@@ -5,6 +5,16 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
+	
+	Scanner scanner;
+	
+	public Menu() {
+		scanner = new Scanner(System.in);
+	}
+	
+	public void cleanup() {
+	//	scanner.close();
+	}
 
 	public void displayMainMenu() {
 		System.out.println("(1) Display Vending Machine Items");
@@ -20,7 +30,6 @@ public class Menu {
 	}
 
 	public int getMenuChoice() {
-		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
 		try {
 			int test = Integer.parseInt(userInput);
@@ -37,7 +46,6 @@ public class Menu {
 	}
 	
 	public int getFeedMoney() {
-		Scanner scanner = new Scanner(System.in);
 		System.out.println("Please enter the amount you wish to add to your balance (1, 2, 5, or 10):");
 		String userInput = scanner.nextLine();
 		if (userInput.equals("1") || userInput.equals("2") || userInput.equals("5") || userInput.equals("10")) {
@@ -50,7 +58,6 @@ public class Menu {
 	
 	public Product getProductChoice(Map<String, Product> map) {
 		System.out.println("Please enter the slot number of the product you wish to purchase");
-		Scanner scanner = new Scanner(System.in);
 		String userInput = scanner.nextLine();
 		if (map.containsKey(userInput) && map.get(userInput).getCount() != 0) {
 			return map.get(userInput);
@@ -68,7 +75,9 @@ public class Menu {
 			} else {
 				stockString = "Sold Out!";
 			}
-			System.out.println(product.getSlotNumber() + "\t" + product.getName() + "\t" + product.getPriceString() + "\t" + "Stock: " + stockString);
+			System.out.print(product.getSlotNumber() + "\t");
+			System.out.format("%-20s", product.getName());
+			System.out.println("$" + product.getPriceString() + "\t\t" + "Stock: " + stockString);
 		}
 	}
 	
@@ -89,7 +98,6 @@ public class Menu {
 	
 	public void waitForEnter() {
 		System.out.println("--Press enter to return to main menu--");
-		Scanner scanner = new Scanner(System.in);
 		scanner.nextLine();
 	}
 	

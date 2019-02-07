@@ -29,17 +29,20 @@ public class Logger {
 	public void logFeedMoney(int moneyDeposited, int balance) {
 		String moneyDepositedString = Util.convertCentsToString(moneyDeposited);
 		String balanceString = Util.convertCentsToString(balance);
-		appendWriter.println(Util.FEED_MONEY_STRING + "\t" + moneyDepositedString + "\t" + balanceString);
+		appendWriter.format("%-25s",Util.FEED_MONEY_STRING);
+		appendWriter.println(moneyDepositedString + "\t" + balanceString);
 	}
 	
 	public void logProductPurchase(Product product, int balance) {
 		String balanceString = Util.convertCentsToString(balance);
-		appendWriter.println(product.getNameAndSlot() + "\t" + product.getPriceString() + "\t" + balanceString);
+		appendWriter.format("%-25s",product.getNameAndSlot());
+		appendWriter.println(product.getPriceString() + "\t" + balanceString);
 }
 	
 	public void logGiveChange(int balance) {
 		String changeString = Util.convertCentsToString(balance - Util.END_BALANCE_CENTS);
 		String endBalanceString = Util.convertCentsToString(Util.END_BALANCE_CENTS);
-		appendWriter.println(Util.GIVE_CHANGE_STRING + "\t" + changeString + "\t" + endBalanceString);
+		appendWriter.format("%-25s",Util.GIVE_CHANGE_STRING);
+		appendWriter.println(changeString + "\t" + endBalanceString);
 	}
 }

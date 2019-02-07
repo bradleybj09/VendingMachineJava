@@ -27,6 +27,7 @@ public class VendingMachineProgram {
 					menu.displayCloseMessage();
 					salesCounter.printAllSales();
 					vendingMachine.getLogger().close();
+					menu.cleanup();
 					programActive = false;
 				}
 			} else {

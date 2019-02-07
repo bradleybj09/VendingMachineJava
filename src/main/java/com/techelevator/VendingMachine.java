@@ -33,6 +33,7 @@ public class VendingMachine {
 			String[] array = line.split("\\|");
 			makeAndAddProduct(array);
 		}
+		scanner.close();
 	}
 	
 	private void makeAndAddProduct(String[] array) {
@@ -54,9 +55,5 @@ public class VendingMachine {
 			map.put(slotLocation, new Gum(slotLocation, name, priceString));
 			break;		
 		}
-	}
-	
-	
-	
-	
+	}	
 }

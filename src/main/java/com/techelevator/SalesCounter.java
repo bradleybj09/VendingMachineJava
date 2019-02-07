@@ -1,13 +1,11 @@
 package com.techelevator;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Map.Entry;
@@ -41,15 +39,15 @@ public class SalesCounter {
 		while (scanner.hasNextLine()) {
 			String line = scanner.nextLine();
 			if (line.contains("**TOTAL SALES**")) {
-				priorSales = Util.convertStringToCents(line.substring(17));
+				priorSales = Util.convertStringToCents(line.substring(17).trim());
 				break;
 			} else {
 				String[] array = line.split("\\|");
 				if (array.length == 1) {
 					
 				} else {
-					String name = array[0];
-					int sales = Integer.parseInt(array[1]);
+					String name = array[0].trim();
+					int sales = Integer.parseInt(array[1].trim());
 					thisMap.put(name, sales); 
 				}
 			}
@@ -81,7 +79,8 @@ public class SalesCounter {
 						sales += thisMap.get(name);
 					}
 				}
-				printWriter.println(name + "|" + sales);
+				printWriter.printf("%-20s", name);
+				printWriter.println("| " + sales);
 			}
 			printWriter.println("\n**TOTAL SALES** " + Util.convertCentsToString(salesThisSessionInCents + priorSales));
 			printWriter.flush();
