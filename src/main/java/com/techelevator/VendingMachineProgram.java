@@ -11,20 +11,23 @@ public class VendingMachineProgram {
 		boolean programActive = true;
 		boolean isMainMenu = true;
 		Menu menu = new Menu();
+		SalesCounter salesCounter = new SalesCounter(vendingMachine.getMap().values());
 		
 		while(programActive) {
 			if (isMainMenu) {
 				menu.displayMainMenu();
 				int choice = menu.getMenuChoice();
 				if (choice == -1) {	
-				} else if (choice == 3) {
-					menu.displayCloseMessage();
-					programActive = false;
-				} else if (choice == 1) {
+				}  else if (choice == 1) {
 					menu.displayContents(vendingMachine.getMap().values());
 					menu.waitForEnter();
 				} else if (choice == 2) {
 					isMainMenu = false;
+				} else if (choice == 3) {
+					menu.displayCloseMessage();
+					salesCounter.printAllSales();
+					vendingMachine.getLogger().close();
+					programActive = false;
 				}
 			} else {
 				Transaction transaction = new Transaction(vendingMachine.getLogger());
@@ -49,10 +52,12 @@ public class VendingMachineProgram {
 							if (!success) {
 								menu.displayNotEnoughMoney();
 							} else {
+								salesCounter.recordSale(choiceProduct);
 								menu.makeNoise(choiceProduct);
 							}
 						}
 					} else if (choice == 3) {
+						menu.displayChangeInCoins(transaction.convertIntoCoins());
 						transaction.finishTransaction();
 						transactionActive = false;
 						isMainMenu = true;

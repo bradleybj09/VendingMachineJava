@@ -72,6 +72,13 @@ public class Menu {
 		}
 	}
 	
+	public void displayChangeInCoins(int[] coins) {
+		System.out.println("Your change is: ");
+		System.out.println(coins[0] + " Quarter(s)");
+		System.out.println(coins[1] + " Dime(s)");
+		System.out.println(coins[2] + " Nickel(s)");
+	}
+	
 	public void makeNoise(Product product) {
 		System.out.println(product.makeNoise());
 	}

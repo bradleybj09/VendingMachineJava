@@ -13,8 +13,15 @@ public class Logger {
 	
 	public Logger() throws IOException {
 		logFile = new File("Log.txt");
+		if (logFile.exists()) {
+			logFile.delete();
+		}
+		logFile.createNewFile();
 		fileWriter = new FileWriter(logFile, true);
 		appendWriter = new PrintWriter(fileWriter);
+	}
+	
+	public void close() {
 		appendWriter.flush();
 		appendWriter.close();
 	}
@@ -23,22 +30,16 @@ public class Logger {
 		String moneyDepositedString = Util.convertCentsToString(moneyDeposited);
 		String balanceString = Util.convertCentsToString(balance);
 		appendWriter.println(Util.FEED_MONEY_STRING + "\t" + moneyDepositedString + "\t" + balanceString);
-		appendWriter.flush();
-		appendWriter.close();
 	}
 	
 	public void logProductPurchase(Product product, int balance) {
 		String balanceString = Util.convertCentsToString(balance);
 		appendWriter.println(product.getNameAndSlot() + "\t" + product.getPriceString() + "\t" + balanceString);
-		appendWriter.flush();
-		appendWriter.close();
 }
 	
 	public void logGiveChange(int balance) {
 		String changeString = Util.convertCentsToString(balance - Util.END_BALANCE_CENTS);
 		String endBalanceString = Util.convertCentsToString(Util.END_BALANCE_CENTS);
 		appendWriter.println(Util.GIVE_CHANGE_STRING + "\t" + changeString + "\t" + endBalanceString);
-		appendWriter.flush();
-		appendWriter.close();
 	}
 }

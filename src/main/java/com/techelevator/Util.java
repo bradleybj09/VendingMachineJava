@@ -30,6 +30,6 @@ public class Util {
 		} else if (centsString.length() == 1) {
 			centsString = "0" + centsString;
 		}
-		return dollarString + "." + centsString;
+		return "$" + dollarString + "." + centsString;
 	}
 }

@@ -1,5 +1,6 @@
 package com.techelevator;
 
+
 public class Transaction {
 
 	private int balanceInCents;
@@ -32,5 +33,15 @@ public class Transaction {
 	public void finishTransaction() {
 		logger.logGiveChange(balanceInCents);
 		balanceInCents = Util.END_BALANCE_CENTS;
+	}
+	
+	public int[] convertIntoCoins() {
+		int numberOfQuarters = balanceInCents/25;
+		int remainderAfterQuarters = balanceInCents%25;
+		int numberOfDimes = remainderAfterQuarters/10;
+		int remainderAfterDimes = remainderAfterQuarters%10;
+		int numberOfNickels = remainderAfterDimes/5;
+		int[] change = {numberOfQuarters, numberOfDimes, numberOfNickels};
+		return change;
 	}
 }
