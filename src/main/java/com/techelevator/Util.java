@@ -17,6 +17,7 @@ public class Util {
 	public static final String TYPE_CANDY_STRING = "Candy";
 	public static final String TYPE_GUM_STRING = "Gum";
 	public static final String TYPE_DRINK_STRING = "Drink";
+	public static final String SALES_FILE_STRING = "Sales Report.txt";
 
 	public static int convertStringToCents(String s) {
 		return Integer.parseInt(s.replace(".", ""));

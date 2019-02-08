@@ -1,0 +1,4 @@
+chip2               | 0
+chip1               | 4
+
+**TOTAL SALES** $4.00

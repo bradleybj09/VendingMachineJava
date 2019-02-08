@@ -12,14 +12,18 @@ import java.util.Map.Entry;
 
 public class SalesCounter {
 
-	Map<Product, Integer> map;
-	File salesFile;
-	boolean exists;
-	int priorSales;
+	private Map<Product, Integer> map;
+	private File salesFile;
+	private boolean exists;
+	private int priorSales;
 	
-	public SalesCounter(Collection<Product> list) {
+	public Map<Product, Integer> getMap() {
+		return map;
+	}
+	
+	public SalesCounter(Collection<Product> list, String filename) {
 		priorSales = 0;
-		salesFile = new File("Sales Report.txt");
+		salesFile = new File(filename);
 		if (salesFile.exists()) {
 			exists = true;
 		}

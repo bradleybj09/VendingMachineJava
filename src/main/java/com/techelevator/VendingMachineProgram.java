@@ -11,7 +11,7 @@ public class VendingMachineProgram {
 		boolean programActive = true;
 		boolean isMainMenu = true;
 		Menu menu = new Menu();
-		SalesCounter salesCounter = new SalesCounter(vendingMachine.getMap().values());
+		SalesCounter salesCounter = new SalesCounter(vendingMachine.getMap().values(), Util.SALES_FILE_STRING);
 		
 		while(programActive) {
 			if (isMainMenu) {

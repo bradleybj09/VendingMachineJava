@@ -17,7 +17,8 @@ public class Transaction {
 	
 	public void feedMoney(int depositInCents) {
 		balanceInCents += depositInCents;
-		logger.logFeedMoney(depositInCents, balanceInCents);
+		String log = logger.logFeedMoney(depositInCents, balanceInCents);
+		logger.writeToLog(log);
 	}
 	
 	public boolean purchaseProduct(Product product) {
@@ -26,12 +27,14 @@ public class Transaction {
 		}
 		product.decrement();
 		balanceInCents -= product.getPriceInCents();
-		logger.logProductPurchase(product, balanceInCents);
+		String log = logger.logProductPurchase(product, balanceInCents);
+		logger.writeToLog(log);
 		return true;
 	}
 	
 	public void finishTransaction() {
-		logger.logGiveChange(balanceInCents);
+		String log = logger.logGiveChange(balanceInCents);
+		logger.writeToLog(log);
 		balanceInCents = Util.END_BALANCE_CENTS;
 	}
 	
